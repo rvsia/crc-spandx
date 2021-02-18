@@ -1,4 +1,7 @@
-![src-spandx logo](/doc/logo.png)
+<p align="center">
+  <img src="/doc/logo.png" />
+</p>
+
 # crc-spandx
 
 [![npm version](https://badge.fury.io/js/crc-spandx.svg)](https://badge.fury.io/js/crc-spandx)

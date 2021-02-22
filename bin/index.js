@@ -8,10 +8,6 @@ const argv = require("yargs").argv;
 const spandx = require("spandx");
 
 async function handleCli() {
-    const environment = argv.e || argv.environment || 'ci';
-
-    console.log(`Environment: ${environment}`);
-
     if (argv.v || argv.version) {
         // spandx -v --version
         const package = require("../package.json");
@@ -19,10 +15,6 @@ async function handleCli() {
     } else {
         // spandx
         const defaultConfig = require("../src/spandx.config.js");
-
-        console.log(defaultConfig);
-
-        defaultConfig.routes['/'] = { host: `https://${environment}.cloud.redhat.com/` };
 
         let confFile;
         try {
@@ -35,6 +27,8 @@ async function handleCli() {
         } catch (e) {
             console.warn('No config provided')
         };
+
+        console.log(defaultConfig);
 
         await spandx.init(defaultConfig);
     }

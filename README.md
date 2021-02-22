@@ -11,13 +11,13 @@
 - [Run](#run)
   - [Options](#options)
     - [--config -c](#--config--c)
-    - [--environment -e](#--environment--e)
+- [Changelog](#changelog)
 - [Known issues](#known-issues)
   - [No custom chrome support](#no-custom-chrome-support)
 
 This package is based on [insights-proxy](https://github.com/RedHatInsights/insights-proxy) and [Red Hat Spandx](https://github.com/redhataccess/spandx).
 
-It is being used to run cloud.redhat.com application without running a docker container. It prevents issues of using MacOS Docker.
+crc-spandx is being used to run cloud.redhat.com applications without running a docker container. It also prevents issues with using MacOS Docker and Chrome browser (`Error: status (failed) net::ERR_TOO_MANY_RETIRES`)
 
 # Install
 
@@ -39,9 +39,10 @@ You can also install it locally.
 
 Your file. `spandx.config.js` by default.
 
-### --environment -e
+# Changelog
 
-Environment you want to proxy. `ci` by default.
+0.0.3
+- environment option removed, qa/ci/prod is now handled automatically, stage does not work
 
 # Known issues
 

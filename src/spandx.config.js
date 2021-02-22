@@ -2,7 +2,6 @@ const jwt = require(`jsonwebtoken`);
 const cookie = require(`cookie`);
 const fs = require('fs');
 
-const localhost = 'localhost';
 const PORTAL_BACKEND_MARKER = 'PORTAL_BACKEND_MARKER';
 
 const keycloakPubkeys = {
@@ -57,7 +56,7 @@ const envMap = {
   },
   stage: {
     keycloakPubkey: keycloakPubkeys.stage,
-    target: 'https://stage.cloud.redhat.com',
+    target: 'https://cloud.stage.redhat.com',
     str: 'stage',
   },
   prod: {
@@ -68,7 +67,6 @@ const envMap = {
 };
 
 const authPlugin = (req, res, target) => {
-  console.log({target});
   let env = envMap.prod;
 
   switch (req.headers['x-spandx-origin']) {
@@ -88,8 +86,8 @@ const authPlugin = (req, res, target) => {
       env = false;
   }
 
-  if (target === PORTAL_BACKEND_MARKER) {
-    target = env.target;
+  if (target.includes(PORTAL_BACKEND_MARKER)) {
+    target = target.replace(PORTAL_BACKEND_MARKER, env.target);
     console.log(`    --> mangled ${PORTAL_BACKEND_MARKER} to ${target}`);
   }
 
@@ -144,5 +142,7 @@ module.exports = {
     'prod.foo.redhat.com': 'prod.foo.redhat.com',
   },
   port: 1337,
-  routes: {},
+  routes: {
+    '/': { host: PORTAL_BACKEND_MARKER }
+  },
 };

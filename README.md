@@ -11,7 +11,7 @@
 - [Run](#run)
   - [Options](#options)
     - [--config -c](#--config--c)
-    - [--environment -e](#--environment--e)
+- [Changelog](#changelog)
 - [Known issues](#known-issues)
   - [No custom chrome support](#no-custom-chrome-support)
 
@@ -39,9 +39,10 @@ You can also install it locally.
 
 Your file. `spandx.config.js` by default.
 
-### --environment -e
+# Changelog
 
-Environment you want to proxy. `ci` by default.
+0.0.3
+- environment option removed, qa/ci/prod is now handled automatically, stage does not work
 
 # Known issues
 

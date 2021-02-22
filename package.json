@@ -1,6 +1,6 @@
 {
   "name": "crc-spandx",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Spandx command line tool for running CRC applications",
   "main": "bin/index.js",
   "bin": {

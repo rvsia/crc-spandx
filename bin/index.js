@@ -1,11 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
 const path = require("path");
-
 const argv = require("yargs").argv;
-
-const spandx = require("spandx");
+const spandx = require("spandx-crc");
 
 async function handleCli() {
     if (argv.v || argv.version) {
@@ -25,8 +22,23 @@ async function handleCli() {
             defaultConfig.routes = {...defaultConfig.routes, ...customConfig.routes};
             defaultConfig.esi = {...defaultConfig.esi, ...customConfig.esi};
         } catch (e) {
-            console.warn('No config provided')
+            console.warn('\nNo config provided\n')
         };
+
+        if(typeof argv.localChrome === 'boolean') {
+            if(process.env.INSIGHTS_CHROME) {
+                console.log('\nlocalChrome was not provided, used env variable INSIGHTS_CHROME\n')
+                defaultConfig.routes['/apps/chrome/']      = process.env.INSIGHTS_CHROME;
+                defaultConfig.routes['/beta/apps/chrome/'] = process.env.INSIGHTS_CHROME;
+            } else {
+                console.warn('\nlocalChrome has to be a string or define env variable INSIGHTS_CHROME\n')
+            }
+        }
+
+        if(typeof argv.localChrome === 'string') {
+            defaultConfig.routes['/apps/chrome/']      = argv.localChrome;
+            defaultConfig.routes['/beta/apps/chrome/'] = argv.localChrome;
+        }
 
         console.log(defaultConfig);
 

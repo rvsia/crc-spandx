@@ -11,9 +11,10 @@
 - [Run](#run)
   - [Options](#options)
     - [--config -c](#--config--c)
+    - [--localChrome](#--localchrome)
 - [Changelog](#changelog)
 - [Known issues](#known-issues)
-  - [No custom chrome support](#no-custom-chrome-support)
+  - [No custom chrome 1.0 support](#no-custom-chrome-10-support)
 
 This package is based on [insights-proxy](https://github.com/RedHatInsights/insights-proxy) and [Red Hat Spandx](https://github.com/redhataccess/spandx).
 
@@ -39,13 +40,34 @@ You can also install it locally.
 
 Your file. `spandx.config.js` by default.
 
+### --localChrome
+
+**Currently tested only for ci/beta and Chrome 2.0.**
+
+You can provide an absolute path to your `chrome/build` folder.
+
+If you don't provide the path, the application will take a look for `INSIGHTS_CHROME` environment variable, so you don't have to specify the path everytime.
+
+```bash
+// .bashrc or .zshrc
+
+export INSIGHTS_CHROME=/Users/MyUserName/insights-chrome/build/
+```
+
 # Changelog
+
+0.1.2
+- Allows to use local version of Chrome 2.0
 
 0.0.3
 - environment option removed, qa/ci/prod is now handled automatically, stage does not work
 
 # Known issues
 
-## No custom chrome support
+## No custom chrome 1.0 support
 
-Will be implemented when I need it. :smiley:
+Not tested yet, it should work for ci/beta and chrome 2.0.
+
+## Stage does not work
+
+For stage, it's required to provide a proxy object. Not implemented yet.

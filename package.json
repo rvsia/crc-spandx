@@ -21,6 +21,6 @@
   "homepage": "https://github.com/rvsia/crc-spandx#readme",
   "dependencies": {
     "jsonwebtoken": "8.5.1",
-    "spandx": "2.1.2"
+    "spandx-crc": "1.0.1"
   }
 }
